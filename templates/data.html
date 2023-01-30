@@ -1,0 +1,135 @@
+{% extends "layout.html" %}
+
+{% block title %}
+     Data
+{% endblock %}
+
+{% block main %}
+  <div class='row' id="ksihh">
+    <div class="col-md-2">
+      <div class="row"><b>Start</b></div>
+      <hr>
+      <div class="row"><b>Line 1</b></div>
+      <hr>
+      <div class="row"><b>Line 2</b></div>
+      <hr>
+      <div class="row"><b>Interchange</b></div>
+      <hr>
+      <div class="row"><b>Destination</b></div>
+      <hr>
+      <div class="row"><b>Time</b></div>
+      <hr>
+      <div class="row"><b>Path</b></div>
+    </div>
+    <div class="col-md-10">
+      <div class="row">{{ initial }}</div>
+      <hr>
+      {% if api["line1"]|length > 0 %}
+          <div class="row" id="foo">
+             {% for line1 in api["line1"] %}
+                {{ line1.capitalize() }}&nbsp;
+             {% endfor %}
+          </div>
+      {% else %}
+          <div class="row">
+            None
+          </div>
+      {% endif %}
+      <hr>
+      {% if api["line2"]|length > 0 %}
+          <div class="row" id="bar">
+             {% for line2 in api["line2"] %}
+                 {{ line2.capitalize() }}&nbsp;
+             {% endfor %}
+          </div>
+      {% else %}
+          <div class="row">
+            None
+          </div>
+      {% endif %}
+      <hr>
+      {% if api["interchange"]|length > 0 %}
+          <div class="row">
+             {% for interchange in api["interchange"] %}
+                {{ interchange.capitalize() }}&nbsp;
+             {% endfor %}
+          </div>
+      {% else %}
+          <div class="row">
+            None
+          </div>
+      {% endif %}
+      <hr>
+      <div class="row">{{ final }}</div>
+      <hr>
+      <div class="row">{{ api["time"] }}min</div>
+      <hr>
+      {% if api["path"]|length > 0 %}
+          <div class="row">
+             {% for path in api["path"] %}
+                 {{ path.capitalize() }}&nbsp;
+             {% endfor %}
+          </div>
+      {% else %}
+          <div class="row">
+            None
+          </div>
+      {% endif %}
+    </div>
+  </div>
+  <!-- Create a container element for the map -->
+  <div id="map" style="margin-top: 10px; height: 950px; border-radius: 5px;"></div>
+  <script>
+
+        // Where you want to render the map.
+        var element = document.getElementById('map');
+
+        var lati = {{ lati|tojson }}.toString();
+        var latf = {{ latf|tojson }}.toString();
+        var la1 = {{ la1|tojson }}.toString();
+        var lg1 = {{ lg1|tojson }}.toString();
+        var longi = {{ longi|tojson }}.toString();
+        var longf = {{ longf|tojson }}.toString();
+        var la2 = {{ la2|tojson }}.toString();
+        var lg2 = {{ lg2|tojson }}.toString();
+
+        var map = L.map(element);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Target's GPS coordinates.
+        var targeti = L.latLng(lati, longi);
+        var stationi = L.latLng(la1, lg1);
+        var targetf = L.latLng(latf, longf);
+        var stationf = L.latLng(la2, lg2);
+
+        // Create a bounds object that includes all the points
+        var bounds = L.latLngBounds([targeti, stationi, targetf, stationf]);
+
+        // Fit the map to the bounds
+        map.fitBounds(bounds);
+        
+        L.Routing.control({
+            waypoints: [stationf, targetf]
+        }).addTo(map);
+
+        L.Routing.control({
+            waypoints: [targeti, stationi]
+        }).addTo(map);
+        
+        // Set map's center to target with zoom 14.
+        //map.setView(targeti, 14);
+        map.flyTo(targeti, 14);
+
+        // Place a marker on the location.
+        L.marker(stationi, {draggable: false}).addTo(map).bindPopup({{ initial|tojson }}.toString());
+        L.marker(targetf, {draggable: false}).addTo(map).bindPopup('End');
+        L.marker(stationf, {draggable: false}).addTo(map).bindPopup({{ final|tojson }}.toString());
+        L.marker(targeti, {draggable: false}).addTo(map).bindPopup('Start').openPopup();
+        
+        var polyline2 = L.polyline([stationi, stationf], {color: 'blue'}).addTo(map);
+        
+  </script>
+{% endblock %}

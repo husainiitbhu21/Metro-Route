@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Nearby Station
+{% endblock %}
+
+{% block main %}
+    <!-- Create a container element for the map -->
+    <div id="map1" style="margin-top: 10px; height: 950px; border-radius: 5px"></div>
+    <script>
+        // Where you want to render the map.
+        let element = document.getElementById('map1');
+
+        let lat1 = {{ lat|tojson }}.toString();
+        let long1 = {{ long|tojson }}.toString();
+        let la1 = {{ la|tojson }}.toString();
+        let lg1 = {{ lg|tojson }}.toString();
+        
+        let map = L.map(element);
+
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Target's GPS coordinates.
+        let target = L.latLng(lat1, long1);
+        let station = L.latLng(la1, lg1);
+
+        // Create a bounds object that includes all the points
+        let bounds = L.latLngBounds([target, station]);
+
+        // Fit the map to the bounds
+        map.fitBounds(bounds);
+
+        L.Routing.control({
+            waypoints: [target, station]
+        }).addTo(map);
+
+        // Set map's center to target with zoom 14.
+        map.flyTo(target, 14);
+
+        // Place a marker on the location.
+        L.marker(station, {draggable: false}).addTo(map).bindPopup({{ name|tojson }}.toString());
+        L.marker(target, {draggable: false}).addTo(map).bindPopup('Your Location').openPopup();
+
+    </script> 
+{% endblock %}

@@ -1,0 +1,118 @@
+/* Size for brand */
+nav .navbar-brand
+{
+    font-size: xx-large;
+}
+
+/* Colors for brand */
+nav .navbar-brand .blue
+{
+    color: #83B2F5;
+}
+nav .navbar-brand .red
+{
+    color: #ea433b;
+}
+nav .navbar-brand .yellow
+{
+    color: #f5b82e;
+}
+nav .navbar-brand .green
+{
+    color: #2e944b;
+}
+
+table {
+    text-align: left;
+    vertical-align: middle
+}
+
+#foo {
+    text-align: left;
+}
+
+#bar {
+    text-align: left;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-image: url('/static/metro.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0;
+    margin-top: 0;
+    padding: 0;
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 0.1px;   /* Height of the footer */
+    margin-bottom: 0px;
+    padding: 0;
+}
+
+#ksihh {
+    color:#664d03; 
+    background-color: #fff3cd; 
+    border-color: #ffecb5; 
+    border: 1px solid; 
+    border-radius: .375rem;
+    margin-top: 0;
+}
+
+li {
+    font-weight: 500;
+    font-size: larger;
+}
+
+#coip {
+    font-size: larger; 
+    color: rgb(243, 10, 10); 
+    list-style: none;
+}
+
+#map1 {
+    width: 100%;
+    height: 100%;
+    z-index:100;
+}
+  
+#mapSearchContainer{
+    position:fixed;
+    top:20px;
+    right: 40px;
+    height:30px;
+    width:180px;
+    z-index:110;
+    font-size:10pt;
+    color:#5d5d5d;
+    border:solid 1px #bbb;
+    background-color:#f8f8f8;
+}
+  
+.pointer{
+    position:absolute;
+    display:block;
+    top:86px;
+    left:60px;
+    z-index:99999;
+}
+
+#golu {
+    position: absolute;
+    top: 146px;
+    right: 20px;
+    padding: 4px;
+    z-index: 400;
+    border-radius: 5px;
+}
+
+

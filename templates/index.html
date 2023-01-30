@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block title %}
+     Index
+{% endblock %}
+
+{% block main %}
+  <form action="/" method="post">
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="lati" name="lati" placeholder="Latitude (initial)" type="text" required>
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="longi" name="longi" placeholder="Longitude (initial)" type="text" required>
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="latf" name="latf" placeholder="Latitude (final)" type="text" required>
+    </div>
+    <div class="mb-3">
+        <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="longf" name="longf" placeholder="Longitude (final)" type="text" required>
+    </div>
+    <button class="btn btn-primary" type="submit" id="check">Submit</button>
+  </form>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelector('#check').addEventListener('click', function() {
+        let lati12 = document.getElementById('lati').value; 
+        let lativalue = parseFloat(lati12);
+        let latf12 = document.getElementById('latf').value;
+        let latfvalue = parseFloat(latf12);
+        let longi12 = document.getElementById('longi').value;
+        let longivalue = parseFloat(longi12);
+        let longf12 = document.getElementById('longf').value;
+        let longfvalue = parseFloat(longf12);
+        if ((isNaN(lativalue)) || (isNaN(latfvalue)) || (isNaN(longivalue)) || (isNaN(longfvalue))) {
+            alert('Please provide a valid input!');
+            event.preventDefault();
+        } else if ((lativalue < 27.0) || (lativalue > 29.0) || (latfvalue < 27.0) || (latfvalue > 29.0) || (longivalue < 76.0) || (longivalue > 78.0) || (longfvalue < 76.0) || (longfvalue > 78.0)) {
+            alert('Input outside of Delhi!');
+            event.preventDefault();
+        } else {
+            document.getElementById('check').submit();
+        }
+
+      });
+    }); 
+  </script>
+{% endblock %}
