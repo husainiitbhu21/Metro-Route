@@ -5,7 +5,7 @@ Hello, world!
 
 The Delhi Metro is a mass rapid transit system serving Delhi and its satellite cities. The network consists of 10 colour-coded lines serving 255 stations with a total length of 348.12 kilometres. It is by far the largest and busiest metro rail system in India, and the second oldest after the Kolkata Metro. It is very difficult to find nearest metro stations for one's journey in DELHI.
 
-Welcome to **Metro Route** - a simple online Metro route provider. Your Route was designed, written, and implemented by Husain Saify. For a quick tour of Your Route, please watch a short video.
+Welcome to **Metro Route** - a simple online Metro route provider. It was designed, written, and implemented by Husain Saify. For a quick tour of Your Route, please watch a short video.
 
 ![Input](https://imgur.com/DpGCemw.png)
 ![Output](https://imgur.com/kJq0H7A.png)
