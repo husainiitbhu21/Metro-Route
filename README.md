@@ -7,9 +7,9 @@ The Delhi Metro is a mass rapid transit system serving Delhi and its satellite c
 
 Welcome to **Metro Route** - a simple online Metro route provider. It was designed, written, and implemented by Husain Saify. For a quick tour of Your Route, please watch a short video.
 
-![Input](https://imgur.com/a/pAPmaJw.png)
-![Output](https://imgur.com/a/Qc2h2lp.png)
-![oo](https://imgur.com/a/0dlJqi3.png)
+![Input](https://i.imgur.com/n1m4tct.jpg)
+![Output](https://i.imgur.com/t8PX1dr.jpeg)
+![oo](https://i.imgur.com/ZUF7U24.jpeg)
 
 ## Quickstart
 
